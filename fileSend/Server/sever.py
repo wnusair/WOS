@@ -7,7 +7,7 @@ path = os.getcwd()
 SPACE = "<THIS_TEXT_JUST_DISTINGUISH_TEXTS>"
 
 s = socket.socket()
-s.bind(("192.168.1.136",9999))
+s.bind(("YOUR_IP",9999))
 s.listen(1)
 
 for count, filename in enumerate(os.listdir()):
