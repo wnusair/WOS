@@ -9,7 +9,7 @@ path = os.getcwd()
 
 def socket_connect():
     global s
-    ip = "192.168.1.111"
+    ip = "YOUR_IP"
     port = 9999
     s = socket.socket()
     s.connect((ip,port))
