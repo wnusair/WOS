@@ -1,18 +1,23 @@
 import socket
 import tqdm
 import os
+import time
+
 from tkinter import *
 from tkinter import filedialog
-import time
+
 
 path = os.getcwd()
 
 def socket_connect():
     global s
-    ip = "YOUR_IP"
+
     port = 9999
-    s = socket.socket()
-    s.connect((ip,port))
+
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
+    ip = input("What IP would you like to connect to: ")
+    s.connect((ip, port))
 
 def clientRun():
     socket_connect()

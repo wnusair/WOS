@@ -2,12 +2,17 @@ import socket
 import os
 import tqdm
 
+from login import *
+
 path = os.getcwd()
 
 SPACE = "<THIS_TEXT_JUST_DISTINGUISH_TEXTS>"
 
-s = socket.socket()
-s.bind(("YOUR_IP",9999))
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+
+ip = input("What is your IP: ")
+
+s.bind((ip, 9999))
 s.listen(1)
 
 for count, filename in enumerate(os.listdir()):
