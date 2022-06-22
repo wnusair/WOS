@@ -12,6 +12,7 @@ f = Fernet(key)
 
 def login():
     passwordInput = input("Password: ")
+
     with open('cryp/erp.txt', 'rb') as rawPassword:
         encrypted = rawPassword.read()
 
