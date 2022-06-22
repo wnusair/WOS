@@ -12,23 +12,24 @@ path = os.getcwd()
 def socket_connect():
     global s
 
-    port = 9999
-
-    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s = socket.socket()
 
     ip = input("What IP would you like to connect to: ")
-    s.connect((ip, port))
+    port = input("What PORT would you like to connect to (default = 9999): ")
+
+
+    s.connect((ip, int(port)))
 
 def clientRun():
     socket_connect()
 
     SPACE = "<THIS_TEXT_JUST_DISTINGUISH_TEXTS>"
 
-    print("*You are successfully connected with the server* Use command upload to upload files in cloud . Use command ls to list files in server . User command download <filename.ext> to download files")
+    print("*You are successfully connected with the server* Use command upload to upload files in cloud.\nUse command ls to list files in server.\nUser command download <filename.ext> to download files")
     print("Use cmd commands by cmd <command> Eg: cmd mkdir Documents")
 
     while True:
-        task1 = input(str("Server: ") + ">> ")
+        task1 = input(str("> "))
         task = task1.split()
         if task1 == 'upload':
             try:
