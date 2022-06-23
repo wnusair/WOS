@@ -1,7 +1,8 @@
 # WOS
 This is official Wissam OS, It works for Windows, Linux, and Mac.
 
-## How to Install:
+
+## How to Install (for developers):
 - First, click download on the Github page.
 - Next, go to [python.org](python.org) and install the most [recent version](python.org/downloads).
 
@@ -17,6 +18,9 @@ This is official Wissam OS, It works for Windows, Linux, and Mac.
   2. pip install tqdm
   3. pip install cryptography
   ```
+ 
+ Everything below does not talk about changing the code.
+ 
  
 ## How to Login
 - You will be greeted with a prompt asking for your IP_ADDRESS.
