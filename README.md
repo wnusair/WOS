@@ -1,8 +1,10 @@
 # WOS
 This is official Wissam OS, It works for Windows, Linux, and Mac.
 
+For people with Windows, just download the Github code. Next, double tap the wos.exe file. No need for an install.
+For people with Mac OS X, you have to do all the steps listed below. I tried finding a way to make my project compatable, but it did not work. If if I find a solution, I will include it here.
 
-## How to Install (for developers):
+## How to Install (for developers and Mac OS X):
 - First, click download on the Github page.
 - Next, go to [python.org](python.org) and install the most [recent version](python.org/downloads).
 
