@@ -1,0 +1,11 @@
+Make the applications not case-sensitive. DONE
+
+Make it so that a file does not show "exit" at the end. DONE
+
+Make it so that the CPP menu shows the correct # of options. Check the github for a specific disign. DONE
+
+Change "fileSend" to SCloud on the whole project. Even the application menu. DONE
+
+Clean up client.py, remove * and uneeded words. DONE
+
+Install NSIS to convert into an application

@@ -1,9 +1,0 @@
-Make the applications not case-sensitive.
-
-Make it so that a file does not show "exit" at the end.
-
-Make it so that the CPP menu shows the correct # of options. Check the github for a specific disign.
-
-Change "fileSend" to SCloud on the whole project. Even the application menu.
-
-Clean up client.py, remove * and uneeded words.
