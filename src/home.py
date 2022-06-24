@@ -2,9 +2,12 @@ import os
 import sys
 
 from cryp.crypHome import crypHome
+from login import *
 
 from SCloud.Client.client import clientRun
 from SCloud.Server.sever import serverRun
+
+from cryptography.fernet import Fernet
 
 
 def home():
@@ -117,12 +120,14 @@ def files():
 
             while exit == False:
                 with open(fileSelect, "a") as file:
+                    lineNumber = 1
                     fileEdit = input("")
                     if fileEdit == "exit":
-                        exit = True
                         fileEdit == "\n"
+                        exit = True
 
                     file.write(fileEdit + "\n")
+                    lineNumber + 1
             
             input("Press Enter to continue")
             files()
@@ -145,7 +150,7 @@ def applications():
     os.system('clear')
     os.system('cls')
 
-    apps = "SCloud Server\nSCloud Client\nCPP (File Encryption)\n"
+    apps = "SCloud Server\nSCloud Client\nCPP (File Encryption)\n\nNEW!\nTerminal"
     print(apps)
 
     appOpen = input("> ")
@@ -166,3 +171,75 @@ def applications():
         os.system('cls')
 
         crypHome()
+    elif appOpen == "terminal" or appOpen == "cmd":
+        os.system('clear')
+        os.system('cls')
+
+        terminal()
+
+def terminal():
+    print("""
+WOS Terminal Commands:
+password:
+- read #Tells what password is
+- change #Changes Password
+
+version #Tells what version WOS is on
+
+update #Updates WOS
+""")
+    
+    cmd = input("user-root# ")
+
+    if cmd == "password":
+        cmd = input("password-")
+        if cmd == "read":
+            with open('cryp/mykey.key', 'rb') as mykey:
+                key = mykey.read()
+            
+            f = Fernet(key)
+
+
+            with open('cryp/erp.txt', 'rb') as rawPassword:
+                encrypted = rawPassword.read()
+
+            decrypted = f.decrypt(encrypted)
+
+            with open('dp.txt', 'wb') as decryptedPassword:
+                decryptedPassword.write(decrypted)
+
+            with open('dp.txt', 'rb') as copyPassword:
+                password = copyPassword.readlines()
+
+            openPassword = open('dp.txt')
+
+            password = openPassword.read()
+
+            openPassword.close()
+
+            print(password)
+
+            os.remove('dp.txt')
+
+            terminal()
+        elif cmd == "change":
+            with open('cryp/mykey.key', 'rb') as mykey:
+                key = mykey.read()
+            
+            f = Fernet(key)
+
+            cmd = input("New Password: ")
+            with open('cryp/erp2.txt', 'a') as newPassword:
+                newPassword.write(cmd)
+            with open('cryp/erp2.txt', 'rb') as original_file:
+                original = original_file.read()
+
+            encrypted = f.encrypt(original)
+
+            with open('cryp/erp2.txt', 'wb') as encrypted_file:
+                encrypted_file.write(encrypted)
+
+            os.remove('cryp/erp.txt')
+            os.rename('cryp/erp2.txt', 'cryp/erp.txt')
+
+            terminal()
