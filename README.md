@@ -1,8 +1,7 @@
 # WOS
 This is official Wissam OS, It works for Windows, Linux, and Mac.
 
-For people with Windows, just download the Github code. Next, double tap the wos.exe file. No need for an install.
-For people with Mac OS X, you have to do all the steps listed below. I tried finding a way to make my project compatable, but it did not work. If if I find a solution, I will include it here.
+I am still trying to make this project into an executable. All the pakages needed for the conversion are not working. The only people who will have access to the password are family and friends.
 
 ## How to Install (for developers and Mac OS X):
 - First, click download on the Github page.
@@ -56,7 +55,7 @@ When you open files, it will show a tree of all the files in that directory (I a
 Each option is pretty self explanatory. Once you click an option, you will have to type the name of the file. If the file is in a seperate folder, type the name of the folder, slash, the name of thefile.
 
 An example:
-randomFolder/randomFile.txt
+folder/file.filetype
 
 ![image](https://user-images.githubusercontent.com/75694885/175176483-b87d1ffa-9671-42a5-a2c3-237467add44b.png)
 
@@ -67,14 +66,11 @@ When you open the application menu, it will show three options:
 2. fileSendClient
 3. CPP (File Encryption)
 
-Each option is case-sensitive(you must spell it exactly the way it is written). I am going to make it noncase-sensitive (Probably not a word). I am only going to talk about the `CPP (File Encryption)` option because it is not cloud related. I will get to it later.
-
 ### CPP (File Encryption)
 Once you type "CPP" or "cpp" on the application menu, it will open a seperate GUI.
 
 ![image](https://user-images.githubusercontent.com/75694885/175177737-4ba8a5d0-7b75-4115-be34-7dc6c4aaedaf.png)
 
-I realize that the code has it say "Option [1 or 2 or 3]:" instead of "Type [1 || 2 || 3 || 4], I will fix this.
 When you select option one (encrypt file), it will ask for the file you wish to encrypt. Like the file menu, you have to type the name of they file. If it is in a another folder, you have to type the name of the folder.
 
 NOTE: THIS WILL NOT WORK UNLESS THE FILE IS IN THE WOS DIRECTORY OR ABOVE!
@@ -141,6 +137,8 @@ When you type cmd, it will run a terminal/console command.
 You also have to type the command after you type "cmd."
 
 Example: cmd echo hi
+
+You need to know basic terminal/console commands to be able to use this.
 
 ### Tree
 This command lists all the files in the cloud. I am working on making it look better (it currently looks ugly).
