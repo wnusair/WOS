@@ -1,0 +1,39 @@
+Hello Everybody! How are your days? I am planning on adding a lot more features.
+
+
+
+SHEEESH
+
+goodbye!
+exit
+Hello again!
+
+I am testing a new feature! Now, if I type exit, it wont show!
+If it does show, I am a failure :(
+exit
+GOSH DIDLY DARN!
+
+oh wait
+This is the old code!
+
+LMAO
+
+Let me try it again with my new code
+
+Tootles!
+exit
+
+I am now trying aain.
+If it shows exit, I am truly a failure.
+exit
+
+NOOOOO!
+
+I WILL TRY UNTILL I AM DEAD!
+I failed really bad
+I am sad
+let me test out a new feature!
+1| Hello!
+2| How is your day?
+3| exit
+exit

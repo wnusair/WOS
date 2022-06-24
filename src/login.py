@@ -5,6 +5,8 @@ from home import *
 
 import os
 
+from home import home
+
 with open('cryp/mykey.key', 'rb') as mykey:
     key = mykey.read()
 
