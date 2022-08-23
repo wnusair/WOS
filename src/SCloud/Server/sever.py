@@ -47,9 +47,7 @@ def serverRun():
                 pass
         if(str(msg.decode("utf-8")) == "ls"):
             try:
-                os.chdir(path)
-                data = os.listdir(path)
-                data = ' '.join(data)
+                data = os.system("tree")
                 c.send(bytes(data , "utf-8"))
             except:
                 pass

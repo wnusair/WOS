@@ -150,7 +150,7 @@ def applications():
     os.system('clear')
     os.system('cls')
 
-    apps = "SCloud Server\nSCloud Client\nCPP (File Encryption)\n\nNEW!\nTerminal"
+    apps = "SCloud Server\nSCloud Client\nCPP (File Encryption)\nTerminal\n\nNEW!\nChange Password"
     print(apps)
 
     appOpen = input("> ")
@@ -171,25 +171,24 @@ def applications():
         os.system('cls')
 
         crypHome()
+
+    elif appOpen == "password" or appOpen ==  "pwd" or appOpen ==  "change" or appOpen ==  "changepassword":
+        changePassword()
     elif appOpen == "terminal" or appOpen == "cmd":
         os.system('clear')
         os.system('cls')
 
         terminal()
 
-def terminal():
+def changePassword():
     print("""
-WOS Terminal Commands:
 password:
 - read #Tells what password is
 - change #Changes Password
-
-version #Tells what version WOS is on
-
-update #Updates WOS
 """)
     
     cmd = input("user-root# ")
+    
 
     if cmd == "password":
         cmd = input("password-")
@@ -221,7 +220,7 @@ update #Updates WOS
 
             os.remove('dp.txt')
 
-            terminal()
+            changePassword()
         elif cmd == "change":
             with open('cryp/mykey.key', 'rb') as mykey:
                 key = mykey.read()
@@ -242,4 +241,27 @@ update #Updates WOS
             os.remove('cryp/erp.txt')
             os.rename('cryp/erp2.txt', 'cryp/erp.txt')
 
-            terminal()
+            changePassword()
+    elif cmd == "exit" or cmd == "quit":
+        home()
+
+
+def terminal():
+    print("""
+WOS Terminal Commands:
+type any CMD command
+""")
+    
+    run = True
+    while run:
+        directory = os.getcwd()
+
+        cmd = input(f"""
+user-root#
+│
+└── {directory} $""")
+
+        if cmd == "exit" or cmd == "quit":
+            home()
+        else:
+            os.system(cmd)
