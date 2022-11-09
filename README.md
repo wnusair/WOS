@@ -1,9 +1,19 @@
 # WOS
 This is official Wissam OS, It works for Windows, Linux, and Mac.
 
-I am still trying to make this project into an executable. All the pakages needed for the conversion are not working. The only people who will have access to the password are family and friends.
+The default password is wissamiscool22
 
-## How to Install (for developers and Mac OS X):
+
+## Table of Contents
+- [Install](#how-to-install)
+
+
+
+
+
+
+
+## How to Install
 - First, click download on the Github page.
 - Next, go to [python.org](python.org) and install the most [recent version](python.org/downloads).
 
