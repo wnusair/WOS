@@ -6,6 +6,7 @@ from login import *
 
 from SCloud.Client.client import clientRun
 from SCloud.Server.sever import serverRun
+from apps.apps import run
 
 from cryptography.fernet import Fernet
 
@@ -179,6 +180,14 @@ def applications():
         os.system('cls')
 
         terminal()
+    
+    elif appOpen == "apps":
+        os.system('clear')
+        os.system('cls')
+
+        run()
+
+
 
 def changePassword():
     print("""
