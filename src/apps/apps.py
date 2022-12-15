@@ -6,4 +6,5 @@ def run():
         
         app = input("> ")
 
+
         os.system("start " + app)

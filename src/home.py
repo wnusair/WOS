@@ -151,7 +151,7 @@ def applications():
     os.system('clear')
     os.system('cls')
 
-    apps = "SCloud Server\nSCloud Client\nCPP (File Encryption)\nTerminal\n\nNEW!\nChange Password"
+    apps = "SCloud Server\nSCloud Client\nCPP (File Encryption)\nTerminal\n\nNEW!\nApps"
     print(apps)
 
     appOpen = input("> ")
@@ -181,7 +181,7 @@ def applications():
 
         terminal()
     
-    elif appOpen == "apps":
+    elif appOpen == "apps" or appOpen == "Apps":
         os.system('clear')
         os.system('cls')
 
