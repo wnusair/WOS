@@ -3,14 +3,14 @@ This is official Wissam OS, It works for Windows, Linux, and Mac.
 
 The default password is wissamiscool22
 
+IF YOU ARE ON REPLIT YOU HAVE TO RUN THIS IN THE SHELL
+```
+cd src
+python main.py
+```
 
 ## Table of Contents
 - [Install](#how-to-install)
-
-
-
-
-
 
 
 ## How to Install
