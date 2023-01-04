@@ -11,7 +11,23 @@ python main.py
 
 ## Table of Contents
 - [Install](#how-to-install)
-
+- [Login](#how-to-login)
+- [How to Open Files](#how-to-open-files)
+- [Files Menu](#files-menu)
+- [How to Open Apps](#how-to-open-applications)
+- [App Menu](#application-menu)
+  - [CPP](#cpp)
+- [The Cloud](#the-cloud)
+- [How to Access the SCloud](#how-to-access-the-scloud)
+  - [Picture Steps](#picture-steps)
+- [How to Use the SCloud](#how-to-use-the-scloud)
+  - [Upload](#upload)
+  - [Download](#download)
+  - [CMD](#cmd)
+  - [Tree](#tree)
+- [How the SCloud works](#how-scloud-works)
+- [Personal Use](#personal-use)
+- [Closing Remarks](#closing-remarks)
 
 ## How to Install
 - First, click download on the Github page.
@@ -39,22 +55,17 @@ python main.py
 - The number next to "IPv4" is what you want.
 - In the program, enter your IPv4 address, and type in your desired port
   - The default is 9999
+- The password is `wissamiscool22`
 - Congrats! You have logged into Wissam OS!
 
 ## Two Options
 Once you login, you will beee greeted with the ASCII logo, and two options. This part of the README.MD file will help you navigate.
 ![image](https://user-images.githubusercontent.com/75694885/175171343-2cef94f5-2653-4e66-b2ad-dadfffdcfc4d.png)
 
-### How to open "files."
-There are two ways to open "files."
+### How to open Files
+There are two ways to open files.
 - Type "1"
 - Type "files" capitalized or lower case
-
-### How to open "applications."
-There are three ways to open "applications."
-- Type "1"
-- Type "apps" capitalized or lower case
-- Type "applications" capitalied or lower case.
 
 ## Files Menu
 When you open files, it will show a tree of all the files in that directory (I am planning on making a seperate folder for personal files). Anyway, you will see three options:
@@ -69,6 +80,11 @@ folder/file.filetype
 
 ![image](https://user-images.githubusercontent.com/75694885/175176483-b87d1ffa-9671-42a5-a2c3-237467add44b.png)
 
+### How to open Applications
+There are three ways to open applications.
+- Type "1"
+- Type "apps" capitalized or lower case
+- Type "applications" capitalied or lower case.
 
 ## Application Menu
 When you open the application menu, it will show three options:
@@ -76,7 +92,7 @@ When you open the application menu, it will show three options:
 2. fileSendClient
 3. CPP (File Encryption)
 
-### CPP (File Encryption)
+### CPP
 Once you type "CPP" or "cpp" on the application menu, it will open a seperate GUI.
 
 ![image](https://user-images.githubusercontent.com/75694885/175177737-4ba8a5d0-7b75-4115-be34-7dc6c4aaedaf.png)
@@ -94,7 +110,7 @@ Now, it is time for what you have been waiting for...
 # The Cloud
 This section talks about the cloud, how to access it, how to use it, and how it works.
 
-NOTE: IN ORDER TO USE THE CLOUD, YOU MUST TYPE IN YOUR CORRECT IPv4 ADDRESS. TO LEARN HOW, GO TO "HOW TO LOG IN."
+NOTE: IN ORDER TO USE THE CLOUD, YOU MUST TYPE IN YOUR CORRECT IPv4 ADDRESS. TO LEARN HOW, GO TO [HOW TO LOG IN](#how-to-log-in)
 
 ## How to Access the SCloud
 In order to access the SCloud, you must log in with your correct IPv4 address. Once you have logged in:
@@ -120,7 +136,6 @@ In order to access the SCloud, you must log in with your correct IPv4 address. O
 ![image](https://user-images.githubusercontent.com/75694885/175180183-cbe0808b-29bb-4ca4-abab-ba839fac6aba.png)
 
 In the last image when I typed "tree," the reason why nothing showed up was because I did not activate the server.
-Also, I accidentally typed "ls."
 
 ## How to Use the SCloud
 There are a few commands that can be run.
@@ -135,9 +150,8 @@ tree
 When you type "upload," a window will pop up. Select the file of your choice, and press open. Once the file uploads, it will be in the cloud, and it will show a message.
 
 ### Download
-When you type download, you also have to type the file name after.
-
-Example download example.txt
+When you type download, you also have to type the file and type name after.
+eg: download test.txt
 
 This is how you can download files from the cloud
 
@@ -161,13 +175,12 @@ Socket allows the client and server to be able to transfer files, and commands.
 
 The server has about 100 GB of storage.
 
-# fileSendServer
-You may have noticed an option in the apps menu labeled fileSendServer. This is because you can have your own personal server. Once you run the file, you have already set up your own cloud for personal use. There are no prompts.
-
 ## Personal Use
-What do I mean by personal use? Maybe you want somebody to send you a large file. Most services do not allow people to share large files (Gmail, Discord, SMS, MMS, RCS, iMessage). Some might say, why not make a Shared Google Drive, or OneDrive? The reason is simple. In order to make a Shared Google Drive, you need to spend money; and OneDrive only offers 6GB. I don't want to spend money to share files when I could do it for free! This project is benificial and fun.
+- Why would you use this program? It is really simple. If you need to upload a large file, I mean Gigabytes worth, you would be hesitant to use your OneDrive, ICloud, or Google Drive. These services offer limited storage, and it is mainly for personal documents, images, etc. With unlimited storage (limited to the machine you are using), the possibilities are endless.
 
-Wait? How could this project be free if I have 100GB? Wouldn't that cost money? Yes, but no. What I mean is, I had this storage lying around, and I was not the one who payed for it (my parents did 😂).
+- Another potential use is file sharing. If you have ever wanted to share large files, you are often met with a limit of only a few megabytes. With WOS, there is no limit.
+
+- The last feature that is probably going to be used the most, is the fact that you can run any application on WOS. I realized you could use the built-in terminal to run a command to start an EXE file (maybe the same on MAC). I decided to download an app, like steam, then I went to where all the files were stored. I moved all of them to the "src" folder, and ran a command to start the app (start steam.exe). I am currently working on a feature to be able to run apps without making the folders messy.
 
 # Closing Remarks
-I am going to add more to this project. If you read to the end, text me, "I read to the end 🧀" I will give you a surprise.
+I am going to add more to this project. If you read to the end, email me, "I read to the end 🧀" I will give you a surprise.
