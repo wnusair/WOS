@@ -106,6 +106,8 @@ There are three ways to open applications.
 - Type "applications" capitalied or lower case.
 
 ## Application Menu
+
+### NOTE, THIS SECTION IS NOT ACURATE AND WILL BE UPDATED AS PER OUR 1.5.0 UPDATE
 When you open the application menu, it will show three options:
 1. fileSendServer
 2. fileSendClient
