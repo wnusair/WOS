@@ -20,7 +20,19 @@ def socket_connect():
 
     s.connect((ip, int(port)))
 
+
 def clientRun():
+
+    global s
+
+    s = socket.socket()
+
+    ip = input("What IP would you like to connect to: ")
+    port = input("What PORT would you like to connect to (default = 9999): ")
+
+
+    s.connect((ip, int(port)))
+
     SPACE = "<THIS_TEXT_JUST_DISTINGUISH_TEXTS>"
 
     print("[SERVER] You have connected the SCloud\nUse command upload to upload files in cloud.\nUse command ls to list files in server.\nUser command download <filename.ext> to download files")
@@ -44,7 +56,6 @@ def clientRun():
                     if not data:
                         s.close()
                         time.sleep(0.5)
-                        socket_connect()
                         terminated = True
                     s.sendall(data)
                     upload_bar.update(len(data))
@@ -57,7 +68,6 @@ def clientRun():
                 data = s.recv(4096)
                 s.close()
                 time.sleep(0.5)
-                socket_connect()
                 print(str(data.decode('utf-8')))
             except:
                 pass
@@ -70,7 +80,6 @@ def clientRun():
                     s.send(bytes(str(task[1]) , "utf-8"))
                     s.close()
                     time.sleep(0.5)
-                    socket_connect()
                 except:
                     pass
             if task[0] == "download":
@@ -88,7 +97,6 @@ def clientRun():
                         data = s.recv(4096)
                         if not data:
                             time.sleep(0.1)
-                            socket_connect()
                             terminated = True
                             break
                         file.write(data)

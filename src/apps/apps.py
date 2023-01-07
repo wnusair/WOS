@@ -4,7 +4,7 @@ import sys
 from cryp.crypHome import crypHome
 from login import *
 
-from SCloud.Client.client import clientRun, socket_connect
+from SCloud.Client.client import clientRun
 from SCloud.Server.sever import serverRun
 
 import os
@@ -28,8 +28,8 @@ def run():
         os.system('cls')
         
         print("WARNING: You must restart the program after running the client.")
-        socket_connect()
         clientRun()
+
     elif appOpen == "cpp" or appOpen == "CPP" or appOpen == "3":
         os.system('clear')
         os.system('cls')
