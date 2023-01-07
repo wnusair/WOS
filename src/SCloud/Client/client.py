@@ -21,8 +21,6 @@ def socket_connect():
     s.connect((ip, int(port)))
 
 def clientRun():
-    socket_connect()
-
     SPACE = "<THIS_TEXT_JUST_DISTINGUISH_TEXTS>"
 
     print("[SERVER] You have connected the SCloud\nUse command upload to upload files in cloud.\nUse command ls to list files in server.\nUser command download <filename.ext> to download files")

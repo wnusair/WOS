@@ -4,7 +4,7 @@ import sys
 from cryp.crypHome import crypHome
 from login import *
 
-from SCloud.Client.client import clientRun
+from SCloud.Client.client import clientRun, socket_connect
 from SCloud.Server.sever import serverRun
 from apps.apps import run
 
@@ -148,112 +148,7 @@ def list_files(startpath):
             print('{}{}'.format(subindent, f))
 
 def applications():
-    os.system('clear')
-    os.system('cls')
-
-    apps = "SCloud Server\nSCloud Client\nCPP (File Encryption)\nTerminal\n\nNEW!\nApps"
-    print(apps)
-
-    appOpen = input("> ")
-    if appOpen == "SCloud Server" or appOpen == "scloud server" or appOpen == "server" or appOpen == "1":
-        os.system('clear')
-        os.system('cls')
-
-        print("WARNING: You must restart the program after running the server.")
-        serverRun()
-    elif appOpen == "SCloud Client" or appOpen == "scloud client" or appOpen == "client" or appOpen == "2":
-        os.system('clear')
-        os.system('cls')
-        
-        print("WARNING: You must restart the program after running the client.")
-        clientRun()
-    elif appOpen == "cpp" or appOpen == "CPP" or appOpen == "3":
-        os.system('clear')
-        os.system('cls')
-
-        crypHome()
-
-    elif appOpen == "password" or appOpen ==  "pwd" or appOpen ==  "change" or appOpen ==  "changepassword":
-        changePassword()
-    elif appOpen == "terminal" or appOpen == "cmd":
-        os.system('clear')
-        os.system('cls')
-
-        terminal()
-    
-    elif appOpen == "apps" or appOpen == "Apps":
-        os.system('clear')
-        os.system('cls')
-
-        run()
-
-
-
-def changePassword():
-    print("""
-password:
-- read #Tells what password is
-- change #Changes Password
-""")
-    
-    cmd = input("user-root# ")
-    
-
-    if cmd == "password":
-        cmd = input("password-")
-        if cmd == "read":
-            with open('cryp/mykey.key', 'rb') as mykey:
-                key = mykey.read()
-            
-            f = Fernet(key)
-
-
-            with open('cryp/erp.txt', 'rb') as rawPassword:
-                encrypted = rawPassword.read()
-
-            decrypted = f.decrypt(encrypted)
-
-            with open('dp.txt', 'wb') as decryptedPassword:
-                decryptedPassword.write(decrypted)
-
-            with open('dp.txt', 'rb') as copyPassword:
-                password = copyPassword.readlines()
-
-            openPassword = open('dp.txt')
-
-            password = openPassword.read()
-
-            openPassword.close()
-
-            print(password)
-
-            os.remove('dp.txt')
-
-            changePassword()
-        elif cmd == "change":
-            with open('cryp/mykey.key', 'rb') as mykey:
-                key = mykey.read()
-            
-            f = Fernet(key)
-
-            cmd = input("New Password: ")
-            with open('cryp/erp2.txt', 'a') as newPassword:
-                newPassword.write(cmd)
-            with open('cryp/erp2.txt', 'rb') as original_file:
-                original = original_file.read()
-
-            encrypted = f.encrypt(original)
-
-            with open('cryp/erp2.txt', 'wb') as encrypted_file:
-                encrypted_file.write(encrypted)
-
-            os.remove('cryp/erp.txt')
-            os.rename('cryp/erp2.txt', 'cryp/erp.txt')
-
-            changePassword()
-    elif cmd == "exit" or cmd == "quit":
-        home()
-
+    run()
 
 def terminal():
     print("""

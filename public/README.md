@@ -10,7 +10,8 @@ python main.py
 ```
 
 ## Table of Contents
-- [Install](#how-to-install)
+- [Install Regularly](#how-to-install-for-regular-use)
+- [Install for Developers](#how-to-install-for-developers)
 - [Login](#how-to-login)
 - [How to Open Files](#how-to-open-files)
 - [Files Menu](#files-menu)
@@ -29,7 +30,24 @@ python main.py
 - [Personal Use](#personal-use)
 - [Closing Remarks](#closing-remarks)
 
-## How to Install
+## How to Install for Regular Use
+- First, click download on the Github page.
+- Next, go to [python.org](python.org) and install the most [recent version](python.org/downloads).
+
+![PythonRecent](https://user-images.githubusercontent.com/75694885/175171518-9f4205f1-2e34-4296-ac94-743cb2eb5069.png)
+
+When you open the folder, there are three files visible:
+```
+download_dependencies.bat
+README-BEFORE-STARTING-ANYTHING.txt
+run.bat
+```
+
+If this is your first time installing WOS, open the `download_dependencies.bat` file. This will install all the necessary packages that WOS needs.
+
+Once the popup says that everything is done downloading (or closes automatically), open the `run.bat` file.
+
+## How to Install for Developers
 - First, click download on the Github page.
 - Next, go to [python.org](python.org) and install the most [recent version](python.org/downloads).
 
@@ -41,22 +59,23 @@ python main.py
 - If it shows a bunch of options, you are good to go.
 - The last thing you need to do is type in your terminal/console:
   ```
-  1. pip install tkinter
-  2. pip install tqdm
-  3. pip install cryptography
-  ```
- 
- Everything below does not talk about changing the code.
- 
+  pip install tkinter
+  pip install tqdm
+  pip install cryptography
+  ``` 
  
 ## How to Login
-- You will be greeted with a prompt asking for your IP_ADDRESS.
-- In order to find your IP_ADDRESS, open up your terminal/console, and type `ipconfig`.
-- The number next to "IPv4" is what you want.
-- In the program, enter your IPv4 address, and type in your desired port
-  - The default is 9999
-- The password is `wissamiscool22`
-- Congrats! You have logged into Wissam OS!
+You will be greeted with a prompt asking for your IP_ADDRESS. Above this prompt, will be your *IPv4 address* displayed like this:
+
+![image](../github/IPv4.png)
+
+You will then be asked for a `port`, the default is 9999
+
+The password is `wissamiscool22`
+
+### Congrats! You have logged into Wissam OS!
+
+<br>
 
 ## Two Options
 Once you login, you will beee greeted with the ASCII logo, and two options. This part of the README.MD file will help you navigate.
