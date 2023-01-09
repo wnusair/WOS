@@ -4,7 +4,7 @@ import sys
 from cryp.crypHome import crypHome
 from login import *
 
-from SCloud.Client.client import clientRun, socket_connect
+from SCloud.Client.client import clientRun
 from SCloud.Server.sever import serverRun
 from apps.apps import run
 
