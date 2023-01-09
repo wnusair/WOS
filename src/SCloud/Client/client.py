@@ -27,7 +27,7 @@ def get_all_file_paths(directory):
     # returning all file paths
     return file_paths        
   
-def zipFile():
+def zipFile(password):
     # path to folder which needs to be zipped
     directory = 'apps'
 
@@ -41,13 +41,12 @@ def zipFile():
         print(file_name)
   
     # writing files to a zipfile
-    with ZipFile('apps.zip','w') as zip:
+    with ZipFile(f'apps{password}.zip','w') as zip:
         # writing each file one by one
         for file in file_paths:
             zip.write(file)
   
     print('All files zipped successfully!')
-
 
 def clientRun():
 
@@ -72,32 +71,31 @@ def clientRun():
         if task1 == "exit" or task1 == "quit":
             exit()
         
-        if task1 == "backup":
-            zipFile()
-            # start sending the file
-            size = os.path.getsize('./apps.zip')
+        if task1 == "zip":
+            password = input("Password: ")
+            zipFile(password)
 
-            s.send(f"{'./apps.zip'}{SPACE}{size}".encode())
-            progress = tqdm.tqdm(range(int(size)), f"Sending {'./apps.zip'}", unit="B", unit_scale=True, unit_divisor=1024)
-            with open('./apps.zip', "rb") as f:
-                while True:
-                    # read the bytes from the file
-                    bytes_read = f.read(4096)
-                    if not bytes_read:
-                        # file transmitting is done
-                        break
-                    # we use sendall to assure transimission in 
-                    # busy networks
-                    s.sendall(bytes_read)
-                    # update the progress bar
-                    progress.update(len(bytes_read))
-            # close the socket
-            s.close()
-            clientRun()
+            filename = f"apps{password}"
+            size = os.path.getsize(filename)
+            s.send(bytes("upload" , "utf-8"))
+            s.send(f"{filename}{SPACE}{size}".encode())
+            upload_bar = tqdm.tqdm(range(int(size)) , f"Sending {filename}" , unit="B", unit_scale=True, unit_divisor=1024) 
+            file = open(filename , "rb")
+            terminated = False
+            while not terminated:
+                data = file.read(4096)
+                if not data:
+                    s.close()
+                    time.sleep(0.5)
+                    terminated = True
+                s.sendall(data)
+                upload_bar.update(len(data))
+            file.close()
+
 
         if task1 == 'upload':
             try:
-                data = filedialog.askopenfile(initialdir="/")
+                data = filedialog.askopenfile(initialdir="./")
                 filename = str(data.name)
                 size = os.path.getsize(filename)
                 s.send(bytes("upload" , "utf-8"))
@@ -114,20 +112,18 @@ def clientRun():
                     s.sendall(data)
                     upload_bar.update(len(data))
                 file.close()
-                clientRun()
             except:
                 pass
                 clientRun()
         if len(task) > 1:
-            if task[0] == "cmd":
+            if task[0] == "command":
                 try:
                     s.send(bytes("cmd" , "utf-8"))
-                    task = task1.split('cmd')
+                    task = task1.split('command')
                     task[1] = task[1].lstrip(' ')
                     s.send(bytes(str(task[1]) , "utf-8"))
                     s.close()
                     time.sleep(0.5)
-                    clientRun()
                 except:
                     pass
                     clientRun()
@@ -151,7 +147,5 @@ def clientRun():
                         file.write(data)
                         upload_bar.update(len(data))
                     file.close()
-                    clientRun()
                 except:
                     pass
-                    clientRun()

