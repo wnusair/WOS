@@ -1,36 +1,34 @@
 import socket
 import os
 import tqdm
-
-from login import *
+import subprocess
 
 path = os.getcwd()
 
 SPACE = "<THIS_TEXT_JUST_DISTINGUISH_TEXTS>"
 
-s = socket.socket()
-
-ip = input("What is your IP: ")
-port = input("What PORT would you like to connect to (default = 9999): ")
-
-if ip == "":
-    ipName = socket.gethostname()
-    ip = socket.gethostbyname(ipName)
-
-if port == "":
-    port = "9999"
-
-s.bind((ip, int(port)))
-s.listen(1)
-
-for count, filename in enumerate(os.listdir()):
-        os.rename(filename , filename.replace(" ","_"))
-
 def serverRun():
-    print("[SERVER IS AWAKE]")
+    s = socket.socket()
 
+    ip = input("What is your IP: ")
+    port = input("What is your PORT (9999): ")
+
+
+    if ip == "":
+        ipName = socket.gethostname()
+        ip = socket.gethostbyname(ipName)
+
+    if port == "":
+        port = "9999"
+
+
+    s.bind((ip,int(port)))
+    s.listen()
+
+    for count, filename in enumerate(os.listdir()):
+            os.rename(filename , filename.replace(" ","_"))
     while True:
-        print("[SERVER] waiting....")
+        print("Server waiting....")
         c , _ = s.accept()
         msg = c.recv(1024)
         if(str(msg.decode("utf-8")) == "upload"):
@@ -40,7 +38,7 @@ def serverRun():
                 filename = os.path.basename(filename) 
                 file = open(str(filename) , 'wb')
                 terminated = False
-                upload_bar = tqdm.tqdm(range(int(size)) , f"[SERVER] Receiving {filename}" , unit="B", unit_scale=True, unit_divisor=1024)
+                upload_bar = tqdm.tqdm(range(int(size)) , f"Receiving {filename}" , unit="B", unit_scale=True, unit_divisor=1024)
                 while not terminated:
                     data = c.recv(4096)
                     if not data:
@@ -48,13 +46,8 @@ def serverRun():
                         break
                     file.write(data)
                     upload_bar.update(len(data))
+                c.send(bytes('Received', "utf-8"))
                 file.close()
-            except:
-                pass
-        if(str(msg.decode("utf-8")) == "ls"):
-            try:
-                data = os.system("tree")
-                c.send(bytes(data , "utf-8"))
             except:
                 pass
         if(str(msg.decode("utf-8")) == "command"):
@@ -71,7 +64,7 @@ def serverRun():
                 filename = str(data)
                 size = os.path.getsize(data)
                 c.send(f"{filename}{SPACE}{size}".encode())
-                upload_bar = tqdm.tqdm(range(int(size)) , f"[SERVER] Sending {filename}" , unit="B", unit_scale=True, unit_divisor=1024) 
+                upload_bar = tqdm.tqdm(range(int(size)) , f"Sending {filename}" , unit="B", unit_scale=True, unit_divisor=1024) 
                 filename = filename.replace(" ","")
                 file = open(filename , "rb")
                 terminated = False

@@ -30,6 +30,9 @@ def home():
                  ---------------------------
                 |       Applications        |
                  ---------------------------
+
+    Currently using V1.6.0_ALPHA
+    Type 'update' to check for updates (NOT FUNCTIONAL YET)
     """)
 
     mainScreen = input("> ")
