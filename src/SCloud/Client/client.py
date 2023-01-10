@@ -62,13 +62,14 @@ def clientRun():
 
     SPACE = "<THIS_TEXT_JUST_DISTINGUISH_TEXTS>"
 
-    print("[SERVER] You have connected the SCloud\nUse command upload to upload files in cloud.\nUser command download <filename.ext> to download files")
-    print("Use cmd commands by cmd <command> Eg: cmd mkdir Documents")
+    print("[SERVER] You have connected the SCloud\n'upload' to upload files in cloud.\ndownload <filename.ext> to download files")
+    print("*IMPORTANT* WHEN EXITING TYPE 'exit' OR 'quit'")
 
     while True:
         task1 = input(str("> "))
         task = task1.split()
         if task1 == "exit" or task1 == "quit":
+            s.close()
             exit()
         
         if task1 == "zip":
