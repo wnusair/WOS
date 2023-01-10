@@ -76,24 +76,6 @@ def clientRun():
             password = input("Password: ")
             zipFile(password)
 
-            filename = f"apps{password}"
-            size = os.path.getsize(filename)
-            s.send(bytes("upload" , "utf-8"))
-            s.send(f"{filename}{SPACE}{size}".encode())
-            upload_bar = tqdm.tqdm(range(int(size)) , f"Sending {filename}" , unit="B", unit_scale=True, unit_divisor=1024) 
-            file = open(filename , "rb")
-            terminated = False
-            while not terminated:
-                data = file.read(4096)
-                if not data:
-                    s.close()
-                    time.sleep(0.5)
-                    terminated = True
-                s.sendall(data)
-                upload_bar.update(len(data))
-            file.close()
-
-
         if task1 == 'upload':
             try:
                 data = filedialog.askopenfile(initialdir="./")
