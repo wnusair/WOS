@@ -2,7 +2,7 @@ import os
 import sys
 
 from login import *
-
+from SCloud.Client.client import *
 from apps.apps import run
 
 def home():
@@ -31,22 +31,35 @@ def home():
                 |       Applications        |
                  ---------------------------
 
-    Currently using V1.6.0_ALPHA
-    Type 'update' to check for updates (NOT FUNCTIONAL YET)
+Currently using V1.6.0_ALPHA
+Type 'update' to check for updates (NOT FUNCTIONAL YET)
     """)
 
     mainScreen = input("> ")
 
     if mainScreen == "files" or mainScreen == "1":
         files()
+
     elif mainScreen == "applications" or mainScreen == "apps" or mainScreen == "2":
-        applications()
+        run()
+    
+    elif mainScreen == "update":
+        os.system('clear')
+        os.system('cls')
+
+        print('\n' * 4)
+        print("Type 'download update.zip' once you are connected.")
+
+        clientRun()
+
+
+        
 
 # File Explorer
 def files():
     os.system('clear')
     os.system('cls')
-    list_files(".")
+    list_files("./files/")
 
     print("Press '1' to open a file.\nPress '2' to edit or create a file.\nPress '3' to exit.")
     fileSelect = input(">> ")
@@ -55,7 +68,7 @@ def files():
     if fileSelect == "1":
         os.system("cls")
 
-        list_files(".")
+        list_files("./files")
 
         fileSelect = input(">>> ")
         fileOpen = open(fileSelect)
@@ -74,61 +87,32 @@ def files():
 
         fileSelect = input("'edit' or 'new' file: ")
 
-        # Edit a file
-        if fileSelect == "edit":
-            list_files(".")
-
-            fileSelect = input(">>> ")
-            fileOpen = open(fileSelect)
-
+        # Edit/Make a file
+        if fileSelect == "new" or fileSelect == "edit":
             os.system('clear')
             os.system('cls')
-            print("### DOCUMENT START ###\n")
-            print(fileOpen.read() + "\n")
-            print("### DOCUMENT END ###\n\n")
 
-            print("Press enter for a new line.\nType 'exit' to exit.")
+            file_path = input("Type file name: ")
 
-            exit = False
+            with open("./apps/files/" + file_path, 'a') as file:
+                print("Press enter for a new line.\nType 'exit' to exit.")
+                while True:
+                    line = input("")
+                    if line.strip() == "exit":
+                        break
+                    file.write(line + "\n")
 
-            while exit == False:
-                with open(fileSelect, "a") as file:
-                    fileEdit = input("")
-                    if fileEdit == "exit":
-                        exit = True
+            with open("./apps/files/" + file_path, 'r') as file:
+                data = file.read()
 
-                    file.write(fileEdit + "\n")
-            
+            new_data = data[:-4]
+
+            with open("./apps/files/" + file_path, 'w') as file:
+                file.write(new_data)
+
             input("Press Enter to continue")
-            files()
-        
-        # Make new file
-        elif fileSelect == "new":
-            os.system('clear')
-            os.system('cls')
-
-            print("Type file name.")
-            fileSelect = input(">>> ")
-
-            os.system('clear')
-            os.system('cls')
-            print("Press enter for a new line.\nType 'exit' to exit.")
-
-            exit = False
-
-            while exit == False:
-                with open(fileSelect, "a") as file:
-                    lineNumber = 1
-                    fileEdit = input("")
-                    if fileEdit == "exit":
-                        fileEdit == "\n"
-                        exit = True
-
-                    file.write(fileEdit + "\n")
-                    lineNumber + 1
             
-            input("Press Enter to continue")
-            files()
+            home()
 
     # Exit File Explorer
     elif fileSelect == "3":
@@ -143,9 +127,6 @@ def list_files(startpath):
         subindent = ' ' * 4 * (level + 1)
         for f in files:
             print('{}{}'.format(subindent, f))
-
-def applications():
-    run()
 
 def terminal():
     print("""

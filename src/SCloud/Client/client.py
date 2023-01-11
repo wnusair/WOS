@@ -28,7 +28,6 @@ def get_all_file_paths(directory):
 def zipFile(password):
     # path to folder which needs to be zipped
     directory = 'apps'
-
   
     # calling function to get all file paths in the directory
     file_paths = get_all_file_paths(directory)
@@ -44,6 +43,8 @@ def zipFile(password):
         for file in file_paths:
             zip.write(file)
   
+
+
     print('All files zipped successfully!')
 
 def unzipFile(password):
