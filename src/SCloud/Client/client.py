@@ -69,7 +69,7 @@ def socket_connect():
     if port == "":
         port = "9999"
 
-    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    s = socket.socket()
     s.connect((ip, int(port)))
 
 SPACE = "<THIS_TEXT_JUST_DISTINGUISH_TEXTS>"
@@ -116,10 +116,10 @@ def client():
             except:
                 pass
         if len(task) > 1:
-            if task[0] == "cmd":
+            if task[0] == "command":
                 try:
-                    s.send(bytes("cmd" , "utf-8"))
-                    task = task1.split('cmd')
+                    s.send(bytes("command" , "utf-8"))
+                    task = task1.split('command')
                     task[1] = task[1].lstrip(' ')
                     s.send(bytes(str(task[1]) , "utf-8"))
                     s.close()
@@ -158,5 +158,7 @@ def clientRun():
     print("Eg: download test.zip.")
     print("\nTo zip files, type 'zip' or 'unzip' to unzip a file.\nType 'upload' to upload a file.")
     print("\n\nIMPORTANT: type 'exit' or 'quit' to leave")
+    
+    socket_connect()
 
     client()
