@@ -8,7 +8,7 @@ path = os.getcwd()
 SPACE = "<THIS_TEXT_JUST_DISTINGUISH_TEXTS>"
 
 def serverRun():
-    s = socket.socket()
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 
     ip = input("What is your IP: ")
     port = input("What is your PORT (9999): ")

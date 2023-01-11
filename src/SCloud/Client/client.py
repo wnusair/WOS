@@ -69,7 +69,7 @@ def socket_connect():
     if port == "":
         port = "9999"
 
-    s = socket.socket()
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
     s.connect((ip, int(port)))
 
 SPACE = "<THIS_TEXT_JUST_DISTINGUISH_TEXTS>"
