@@ -1,9 +1,5 @@
 # WOS
-
-## WARNING README
-GO TO RELEASES AND DOWNLOAD 1.5.1, THE LATEST VERSION IS NOT 100% SECURE, IF YOU DOWNLOAD, YOU ACCEPT THE RISKS LISTED IN [VERSION 1.6.0_ALPHA](https://github.com/MayFly404/WOS/releases/tag/v1.6.0_ALPHA).
-
-This is official Wissam OS, It works for Windows, Linux, and Mac.
+This is official Wissam OS, It works for Windows, Linux, and Mac. Even Chromebook!
 
 The default password is wissamiscool22
 
