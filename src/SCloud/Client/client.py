@@ -80,13 +80,19 @@ def client():
         task = task1.split()
         if task1 == 'zip':
             try:
-                password = input("Password: ")
+                password = input("password: ")
                 zipFile(password)
+                with s:
+                    filename = f'apps{password}'
+                    with open(filename, 'rb') as file:
+                        sendfile = file.read()
+                    s.sendall(sendfile)
+                    print('file sent')
             except:
                 pass
         if task1 == 'unzip':
             try:
-                password = input("Password: ")
+                password = input("password: ")
                 unzipFile(password)
             except:
                 pass

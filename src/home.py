@@ -32,8 +32,8 @@ def home():
                  ---------------------------
 
 Currently using V1.6.0_ALPHA
-Type 'update' to check for updates (NOT FUNCTIONAL YET)
-    """)
+Type 'update' to check for updates
+""")
 
     mainScreen = input("> ")
 
@@ -110,8 +110,15 @@ def files():
             with open("./apps/files/" + file_path, 'w') as file:
                 file.write(new_data)
 
-            input("Press Enter to continue")
-            
+            print("Would you like to send this file [Y and N]?")
+            send = input(">> ")
+
+            if send == "y" or send == "Y" or send == "yes" or send == "Yes":
+                input("Press Enter to continue")
+            elif send == "n" or send == "N" or send == "no" or send == "No":
+                print("To who (email): ")
+
+                input("Press Enter to Continue")
             home()
 
     # Exit File Explorer
