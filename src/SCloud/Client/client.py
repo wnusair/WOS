@@ -56,7 +56,7 @@ def zipFile(password):
         print(file_name)
   
     # writing files to a zipfile
-    with ZipFile(f'{password}/apps.zip','w') as zip:
+    with ZipFile(f'apps{password}.zip','w') as zip:
         # writing each file one by one
         for file in file_paths:
             zip.write(file)
@@ -66,7 +66,7 @@ def zipFile(password):
     print('All files zipped successfully!')
 
 def unzipFile(password):
-    with ZipFile(f'{password}/apps', 'r') as zip:
+    with ZipFile(f'apps{password}', 'r') as zip:
         # printing all the contents of the zip file
         zip.printdir()
     
@@ -84,7 +84,7 @@ def client():
                 password = input("password: ")
                 zipFile(password)
                 with s:
-                    filename = f'{password}/apps'
+                    filename = f'apps{password}'
                     with open(filename, 'rb') as file:
                         sendfile = file.read()
                     s.sendall(sendfile)
