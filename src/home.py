@@ -3,7 +3,10 @@ import sys
 
 from login import *
 from SCloud.Client.client import *
+
 from apps.apps import run
+
+from SCloud.SCloudHome import *
 
 def home():
     os.system('clear')
@@ -30,6 +33,8 @@ def home():
                  ---------------------------
                 |       Applications        |
                  ---------------------------
+                |           SCloud          |
+                 ---------------------------
 
 Currently using V1.6.0_ALPHA
 Type 'update' to check for updates
@@ -42,6 +47,8 @@ Type 'update' to check for updates
 
     elif mainScreen == "applications" or mainScreen == "apps" or mainScreen == "2":
         run()
+    elif mainScreen == "cloud" or mainScreen == "scloud" or mainScreen == "3":
+        SCloudHome()
     
     elif mainScreen == "update":
         os.system('clear')
