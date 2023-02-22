@@ -24,38 +24,6 @@ def get_all_file_paths(directory):
   
     # returning all file paths
     return file_paths        
-  
-def zipFile(password):
-    # path to folder which needs to be zipped
-    directory = 'apps'
-  
-    # calling function to get all file paths in the directory
-    file_paths = get_all_file_paths(directory)
-  
-    # printing the list of all files to be zipped
-    print('Following files will be zipped:')
-    for file_name in file_paths:
-        print(file_name)
-  
-    # writing files to a zipfile
-    with ZipFile(f'apps{password}.zip','w') as zip:
-        # writing each file one by one
-        for file in file_paths:
-            zip.write(file)
-  
-
-
-    print('All files zipped successfully!')
-
-def unzipFile(password):
-    with ZipFile(f'apps{password}', 'r') as zip:
-        # printing all the contents of the zip file
-        zip.printdir()
-    
-        # extracting all the files
-        print('Extracting all the files now...')
-        zip.extractall()
-        print('Done!')
 
 def socket_connect():
     global s
@@ -74,6 +42,39 @@ def socket_connect():
 
 SPACE = "<THIS_TEXT_JUST_DISTINGUISH_TEXTS>"
 
+
+def zipFile(password):
+    # path to folder which needs to be zipped
+    directory = 'apps'
+  
+    # calling function to get all file paths in the directory
+    file_paths = get_all_file_paths(directory)
+  
+    # printing the list of all files to be zipped
+    print('Following files will be zipped:')
+    for file_name in file_paths:
+        print(file_name)
+  
+    # writing files to a zipfile
+    with ZipFile(f'{password}/apps.zip','w') as zip:
+        # writing each file one by one
+        for file in file_paths:
+            zip.write(file)
+  
+
+
+    print('All files zipped successfully!')
+
+def unzipFile(password):
+    with ZipFile(f'{password}/apps', 'r') as zip:
+        # printing all the contents of the zip file
+        zip.printdir()
+    
+        # extracting all the files
+        print('Extracting all the files now...')
+        zip.extractall()
+        print('Done!')
+
 def client():
     while True:
         task1 = input(str("Server: ") + ">> ")
@@ -83,7 +84,7 @@ def client():
                 password = input("password: ")
                 zipFile(password)
                 with s:
-                    filename = f'apps{password}'
+                    filename = f'{password}/apps'
                     with open(filename, 'rb') as file:
                         sendfile = file.read()
                     s.sendall(sendfile)
