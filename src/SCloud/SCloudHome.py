@@ -6,6 +6,8 @@ from tkinter import *
 from tkinter import filedialog
 from zipfile import ZipFile
 
+from threading import Thread
+
 import time
 
 path = os.getcwd()
@@ -49,6 +51,7 @@ def socket_connect():
 
     if ip == "":
         ipName = socket.gethostname()
+        print(str(ipname))
         ip = socket.gethostbyname(ipName)
     
     if port == "":
@@ -60,24 +63,26 @@ def socket_connect():
 SPACE = "<THIS_TEXT_JUST_DISTINGUISH_TEXTS>"
 
 def upload():
-    try:
-        data = filedialog.askopenfile(initialdir="/")
-        filename = str(data.name)
-        size = os.path.getsize(filename)
-        s.send(bytes("upload" , "utf-8"))
-        s.send(f"{filename}{SPACE}{size}".encode())
-        upload_bar = tqdm.tqdm(range(int(size)) , f"Sending {filename}" , unit="B", unit_scale=True, unit_divisor=1024) 
-        file = open(filename , "rb")
-        terminated = False
-        while not terminated:
-            data = file.read(4096)
+    TCP_IP = input("IP you would like to connect to: ")
+    TCP_PORT = 9999
+    BUFFER_SIZE = 1024
+
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.connect((TCP_IP, TCP_PORT))
+    recived_f = 'imgt_thread'+str(time.time()).split('.')[0]+'.jpeg'
+    with open(recived_f, 'wb') as f:
+        print('file opened')
+        while True:
+            #print('receiving data...')
+            data = s.recv(BUFFER_SIZE)
+            print('data=%s', (data))
             if not data:
-                s.close()
-                time.sleep(0.5)
-                socket_connect()
-                terminated = True
-            s.sendall(data)
-            upload_bar.update(len(data))
-        file.close()
-    except:
-        pass
+                f.close()
+                print('file close()')
+                break
+            # write data to a file
+            f.write(data)
+
+    print('Successfully get the file')
+    s.close()
+    print('connection closed')

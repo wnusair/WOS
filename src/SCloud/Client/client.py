@@ -1,105 +1,36 @@
 import socket
 import tqdm
 import os
+import time
 
 from tkinter import *
 from tkinter import filedialog
-from zipfile import ZipFile
 
-import time
 
 path = os.getcwd()
 
-def get_all_file_paths(directory):
-  
-    # initializing empty file paths list
-    file_paths = []
-  
-    # crawling through directory and subdirectories
-    for root, directories, files in os.walk(directory):
-        for filename in files:
-            # join the two strings in order to form the full filepath.
-            filepath = os.path.join(root, filename)
-            file_paths.append(filepath)
-  
-    # returning all file paths
-    return file_paths        
-
 def socket_connect():
     global s
-    ip = input("What IP would you like to connect to: ")
-    port = input("What PORT would you like to connect to (9999): ")
-
-    if ip == "":
-        ipName = socket.gethostname()
-        ip = socket.gethostbyname(ipName)
-    
-    if port == "":
-        port = "9999"
 
     s = socket.socket()
+
+    ip = input("What IP would you like to connect to: ")
+    port = input("What PORT would you like to connect to (default = 9999): ")
+
+
     s.connect((ip, int(port)))
 
-SPACE = "<THIS_TEXT_JUST_DISTINGUISH_TEXTS>"
+def clientRun():
+    socket_connect()
 
+    SPACE = "<THIS_TEXT_JUST_DISTINGUISH_TEXTS>"
 
-def zipFile(password):
-    # path to folder which needs to be zipped
-    directory = 'apps'
-  
-    # calling function to get all file paths in the directory
-    file_paths = get_all_file_paths(directory)
-  
-    # printing the list of all files to be zipped
-    print('Following files will be zipped:')
-    for file_name in file_paths:
-        print(file_name)
-  
-    # writing files to a zipfile
-    with ZipFile(f'apps{password}.zip','w') as zip:
-        # writing each file one by one
-        for file in file_paths:
-            zip.write(file)
-  
+    print("[SERVER] You have connected the SCloud\nUse command upload to upload files in cloud.\nUse command ls to list files in server.\nUser command download <filename.ext> to download files")
+    print("Use cmd commands by cmd <command> Eg: cmd mkdir Documents")
 
-
-    print('All files zipped successfully!')
-
-def unzipFile(password):
-    with ZipFile(f'apps{password}', 'r') as zip:
-        # printing all the contents of the zip file
-        zip.printdir()
-    
-        # extracting all the files
-        print('Extracting all the files now...')
-        zip.extractall()
-        print('Done!')
-
-def client():
     while True:
-        task1 = input(str("Server: ") + ">> ")
+        task1 = input(str("> "))
         task = task1.split()
-        if task1 == 'zip':
-            try:
-                password = input("password: ")
-                zipFile(password)
-                with s:
-                    filename = f'apps{password}'
-                    with open(filename, 'rb') as file:
-                        sendfile = file.read()
-                    s.sendall(sendfile)
-                    print('file sent')
-            except:
-                pass
-        if task1 == 'unzip':
-            try:
-                password = input("password: ")
-                unzipFile(password)
-            except:
-                pass
-        if task1 == "exit" or task1 == "quit":
-            s.close()
-            exit()
         if task1 == 'upload':
             try:
                 data = filedialog.askopenfile(initialdir="/")
@@ -120,6 +51,16 @@ def client():
                     s.sendall(data)
                     upload_bar.update(len(data))
                 file.close()
+            except:
+                pass
+        if task1 == 'ls':
+            try:
+                s.send(bytes("ls" , "utf-8"))
+                data = s.recv(4096)
+                s.close()
+                time.sleep(0.5)
+                socket_connect()
+                print(str(data.decode('utf-8')))
             except:
                 pass
         if len(task) > 1:
@@ -158,14 +99,3 @@ def client():
                     
                 except:
                     pass
-
-def clientRun():
-    socket_connect()
-    print("You have successfully connected to the SCloud!\nTo download files, type 'download [yourfilename].ext'")
-    print("Eg: download test.zip.")
-    print("\nTo zip files, type 'zip' or 'unzip' to unzip a file.\nType 'upload' to upload a file.")
-    print("\n\nIMPORTANT: type 'exit' or 'quit' to leave")
-    
-    socket_connect()
-
-    client()
