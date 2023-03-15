@@ -44,8 +44,8 @@ def get_all_file_paths(directory):
 
 def socket_connect():
     global s
-    ip = input("What is your IP: ")
-    port = input("What is your PORT (9999): ")
+    ip = input("What IP would you like to connect to: ")
+    port = input("What PORT would you like to connect to (9999): ")
 
     if ip == "":
         ipName = socket.gethostname()
