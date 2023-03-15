@@ -5,7 +5,6 @@ import os
 from tkinter import *
 from tkinter import filedialog
 from zipfile import ZipFile
-
 from threading import Thread
 
 import time
@@ -63,26 +62,48 @@ def socket_connect():
 SPACE = "<THIS_TEXT_JUST_DISTINGUISH_TEXTS>"
 
 def upload():
-    TCP_IP = input("IP you would like to connect to: ")
-    TCP_PORT = 9999
+    TCP_IP = 'localhost'
+    TCP_PORT = 9001
     BUFFER_SIZE = 1024
 
-    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-    s.connect((TCP_IP, TCP_PORT))
-    recived_f = 'imgt_thread'+str(time.time()).split('.')[0]+'.jpeg'
-    with open(recived_f, 'wb') as f:
-        print('file opened')
-        while True:
-            #print('receiving data...')
-            data = s.recv(BUFFER_SIZE)
-            print('data=%s', (data))
-            if not data:
-                f.close()
-                print('file close()')
-                break
-            # write data to a file
-            f.write(data)
 
-    print('Successfully get the file')
-    s.close()
-    print('connection closed')
+    class ClientThread(Thread):
+
+        def __init__(self, ip, port, sock):
+            Thread.__init__(self)
+            self.ip = ip
+            self.port = port
+            self.sock = sock
+            print(" New thread started for "+ip+":"+str(port))
+
+        def run(self):
+            filename = 'anon234.jpeg'
+            f = open(filename, 'rb')
+            while True:
+                l = f.read(BUFFER_SIZE)
+                while (l):
+                    self.sock.send(l)
+                    #print('Sent ',repr(l))
+                    l = f.read(BUFFER_SIZE)
+                if not l:
+                    f.close()
+                    self.sock.close()
+                    break
+
+
+    tcpsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    tcpsock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
+    tcpsock.bind((TCP_IP, TCP_PORT))
+    threads = []
+
+    while True:
+        tcpsock.listen(5)
+        print("Waiting for incoming connections...")
+        (conn, (ip, port)) = tcpsock.accept()
+        print('Got connection from ', (ip, port))
+        newthread = ClientThread(ip, port, conn)
+        newthread.start()
+        threads.append(newthread)
+
+    for t in threads:
+        t.join()

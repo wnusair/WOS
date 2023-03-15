@@ -26,7 +26,6 @@ def clientRun():
     SPACE = "<THIS_TEXT_JUST_DISTINGUISH_TEXTS>"
 
     print("[SERVER] You have connected the SCloud\nUse command upload to upload files in cloud.\nUse command ls to list files in server.\nUser command download <filename.ext> to download files")
-    print("Use cmd commands by cmd <command> Eg: cmd mkdir Documents")
 
     while True:
         task1 = input(str("> "))
