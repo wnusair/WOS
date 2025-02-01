@@ -6,7 +6,7 @@ authors = ["Replit user <<>>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-cryptography = "^38.0.4"
+cryptography = "^41.0.3"
 tqdm = "^4.64.1"
 
 [tool.poetry.dev-dependencies]
