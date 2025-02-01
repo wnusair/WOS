@@ -1,4 +1,4 @@
-# WOS
+# WOS (FOR VERSION 1 ONLY)
 This is official Wissam OS, It works for Windows, Linux, and Mac. Even Chromebook!
 
 The default password is wissamiscool22
