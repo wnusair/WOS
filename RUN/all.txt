@@ -1,0 +1,21 @@
+### Windows (install_python.bat)
+```batch
+@echo off
+choco install python -y
+python -m ensurepip
+python -m pip install --upgrade pip
+```
+
+### Linux (install_python.sh)
+```sh
+#!/bin/bash
+sudo apt update && sudo apt install -y python3 python3-pip
+```
+
+### macOS (install_python.sh)
+```sh
+#!/bin/bash
+brew install python
+python3 -m ensurepip
+python3 -m pip install --upgrade pip
+```
