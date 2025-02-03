@@ -95,7 +95,18 @@ def login_user(db_name: str, credentials: list) -> None:
 
 
 
+# first install
+def first_install() -> None:
+    """ Creates the necessary databases for the first time """
+    try:
+        create_db("users", ["username", "password"])
+        create_db("apps", ["name", "size", "version", "developer", "downloads", "date"])
 
+        os.mkdir("apps")
+
+        print_message("WOS-V2 INITIALIZED.", "SUCCESS")
+    except Exception as e:
+        print_message(str(e), "SYSTEM")
 
 
 
