@@ -1,12 +1,14 @@
 import os
 import screens
 
+from client import download_file, update_csv
+
 from wissampy import print_message, create_db, register_user, login_user
 
 def app_screen() -> None:
     app_screen = screens.Screen(
         "APP SCREEN",
-        ["1. All Apps", "2. Installed Apps", "3. Exit"])
+        ["1. All Apps", "2. Installed Apps", "3. Add App", "4. Exit"])
     choice = app_screen.display()
     
     if choice == "1":
@@ -14,11 +16,14 @@ def app_screen() -> None:
     elif choice == "2":
         installed_apps()
     elif choice == "3":
+        update_csv('127.0.0.1', 5555, 'files/apps.csv')
+    elif choice == "4":
         exit()
     else:
         print_message("Invalid choice.", "red")
 
 def all_apps() -> None:
+    download_file('127.0.0.1', 5555, 'files/apps.csv', 'apps.csv')
     with open("apps.csv", 'r') as file:
         for app in file:
             print(app)
