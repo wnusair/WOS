@@ -19,7 +19,7 @@ def send_file(client_socket, file_path):
         return
 
     try:
-        with open(f"files/{file_path}", 'rb') as f:
+        with open(f"{file_path}", 'rb') as f:
             data = f.read()
             client_socket.sendall(data)
         print_message(f"Sent file '{file_path}' to client.", "INTERNET")
@@ -49,6 +49,21 @@ def handle_client(client_socket, client_address):
                         break
                     f.write(data)
             print_message(f"Updated 'apps.csv' from client {client_address}.", "INTERNET")
+        elif data == "UPLOAD":
+            print_message(f"Client {client_address} is uploading a file.", "INTERNET")
+
+            # recv file info
+            file_name = client_socket.recv(1024).decode('utf-8').strip()
+
+            # Receive the file data until the client closes
+            with open(f"apps/{file_name}", 'wb') as f:
+                while True:
+                    data = client_socket.recv(4096)
+                    if not data:
+                        break
+                    f.write(data)
+            
+            print_message(f"Uploaded '{file_name}' from client {client_address}.", "INTERNET")
 
         if data:
             file_name = data  # The client is requesting this file
