@@ -125,7 +125,7 @@ def update_csv(server_host, server_port, remote_file):
     except Exception as e:
         print_message(f"Error updating file '{remote_file}': {e}", "INTERNET")
     finally:
-        download_file('127.0.0.1', 5555, 'files/apps.csv', 'apps.csv')
+        download_file('10.25.111.103', 5555, 'files/apps.csv', 'apps.csv')
 
         client_socket.close()
         print_message("Connection closed.", "INTERNET")

@@ -17,14 +17,14 @@ def app_screen() -> None:
         elif choice == "2":
             installed_apps()
         elif choice == "3":
-            update_csv('127.0.0.1', 5555, 'files/apps.csv')
+            update_csv('10.25.111.103', 5555, 'files/apps.csv')
         elif choice == "4":
             break
         else:
             print_message("Invalid choice.", "red")
 
 def all_apps() -> None:
-    download_file('127.0.0.1', 5555, 'files/apps.csv', 'apps.csv')
+    download_file('10.25.111.103', 5555, 'files/apps.csv', 'apps.csv')
     with open("apps.csv", 'r') as file:
         for app in file:
             print(app)
@@ -33,7 +33,7 @@ def all_apps() -> None:
 
     if choice.lower() == "y":
         app_name = input("Enter the name of the app you want to download: ")
-        download_file('127.0.0.1', 5555, f'storage/{app_name}.py', f'apps/{app_name}.py')
+        download_file('10.25.111.103', 5555, f'storage/{app_name}.py', f'apps/{app_name}.py')
     elif choice.lower() == "n":
         return
     else:

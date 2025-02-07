@@ -10,7 +10,7 @@ def main():
 
     while True:
         main_screen = screens.Screen(
-            "MAIN SCREEN - error no such thing as apps/files/apps.csv",
+            "MAIN SCREEN",
             ["1. Terminal", "2. Apps", "3. Quit"])
         choice = main_screen.display()
 
