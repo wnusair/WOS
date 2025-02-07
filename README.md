@@ -21,13 +21,16 @@ WOS uses CSV files to manage user data and app data. It provides a simple termin
 - `screens.py`: Contains the `Screen` class for creating and displaying screens.
 - `auth.py`: Manages user authentication.
 - `apps.py`: Manages the app screen and displays installed apps.
-
+- For client-side users, you will only need the `apps` `RUN` `src` folders. The server uses `storage` to keep the uploaded files and `files` to store csv's.
 ## Creating Your Own App
 To create your own app, you can use the functions provided in `wissampy.py` and `screens.py`. Follow these steps:
 1. Create a new Python file for your app.
 2. Import the necessary functions from `wissampy.py` and `screens.py`.
 3. Define your app's functionality using the provided functions.
 4. Add your app to the `apps.csv` file.
+
+## Setting Up the Server
+To set up the WOS server, all the folders and files are already present. Although it may look confusing, the `storage` and `files` folders are meant for the server. To start the server, you will need to simply run src/server.py and adjust the ip address in the client file and apps file to show your desired port and IP.
 
 ## Function Documentation
 

@@ -1,7 +1,3 @@
 name,size,version,developer,downloads,date
-simga simga boy, 1.2M, 1.0.0, simga, 1000, 2019-01-01files/apps.csv
-s,3952,s,s,s
-files/apps.csv
-gimgimcoin,3952,1.0.0,this is an amazing app where you can sell MY very own coin!!,gimgim
 
-test,3952,1.0.1,simga boy,wissam
+wissampy,3952,1.0.0,This is the file used in WOS-V2 as a utility library to make tasks like refreshing the page, sending errors, auth, and creating databases in csv easy.,Wissam Nusair

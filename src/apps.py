@@ -9,7 +9,7 @@ def app_screen() -> None:
     while True:
         app_screen = screens.Screen(
             "APP SCREEN",
-            ["1. All Apps", "2. Installed Apps", "3. Add App", "4. Exit"])
+            ["1. App Store", "2. My Apps", "3. Upload App", "4. Exit"])
         choice = app_screen.display()
         
         if choice == "1":
@@ -29,6 +29,16 @@ def all_apps() -> None:
         for app in file:
             print(app)
     
+    choice = input("Would you like to download an app? (y/n): ")
+
+    if choice.lower() == "y":
+        app_name = input("Enter the name of the app you want to download: ")
+        download_file('127.0.0.1', 5555, f'storage/{app_name}.py', f'apps/{app_name}.py')
+    elif choice.lower() == "n":
+        return
+    else:
+        print("Invalid choice.")
+    
     # ADD CHECKING INTERNET TO UPDATE LIST OF APPS AND ADD ABILITY TO INSTALL THEM
 
 def installed_apps() -> None:
@@ -36,6 +46,16 @@ def installed_apps() -> None:
     apps = os.listdir(apps_dir)
     for app in apps:
         print(app)
+
+    choice = input("Would you like to uninstall an app? (y/n): ")
+
+    if choice.lower() == "y":
+        app_name = input("Enter the name of the app you want to uninstall: ")
+        os.remove(f"apps/{app_name}.py")
+    elif choice.lower() == "n":
+        return
+    else:
+        print("Invalid choice.")
 
 if __name__ == "__main__":
     app_screen()

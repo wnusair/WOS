@@ -54,9 +54,12 @@ def handle_client(client_socket, client_address):
 
             # recv file info
             file_name = client_socket.recv(1024).decode('utf-8').strip()
-
+            
+            # Ensure the 'storage' directory exists
+            os.makedirs("storage", exist_ok=True)
+            
             # Receive the file data until the client closes
-            with open(f"apps/{file_name}", 'wb') as f:
+            with open(f"storage/{file_name}", 'wb') as f:
                 while True:
                     data = client_socket.recv(4096)
                     if not data:

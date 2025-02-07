@@ -90,7 +90,7 @@ def update_csv(server_host, server_port, remote_file):
     project_description = input("Enter the project description: ")
     project_developer = input("Enter the project developer: ")
     project_path = input("Enter the project path: ")
-
+    project_filename = input("Enter the project filename (eg.. main.py): ")
     file_size = os.path.getsize(project_path)
 
     slop = f"\n{project_name},{file_size},{project_version},{project_description},{project_developer}\n"
@@ -120,7 +120,7 @@ def update_csv(server_host, server_port, remote_file):
         time.sleep(1)
 
         # Send the file data
-        upload_file(server_host, server_port, project_path, remote_file)
+        upload_file(server_host, server_port, project_path, project_filename)
 
     except Exception as e:
         print_message(f"Error updating file '{remote_file}': {e}", "INTERNET")
@@ -137,3 +137,4 @@ from client_module import download_file
 # Download 'test/apps.csv' from the server and save it as 'apps.csv'
 download_file('127.0.0.1', 5555, 'test/apps.csv', 'apps.csv')
 """
+
